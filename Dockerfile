@@ -6,8 +6,16 @@ MAINTAINER KBase Developer
 # install line here, a git checkout to download code, or run any other
 # installation scripts.
 
-# RUN apt-get update
+RUN echo "start building docker image"
 
+RUN apt-get update \
+    && apt-get -y --allow-unauthenticated install wget
+
+WORKDIR /kb/module
+
+RUN wget https://github.com/rrwick/Polypolish/releases/download/v0.5.0/polypolish-linux-x86_64-musl-v0.5.0.tar.gz \
+    && tar xzf polypolish-linux-x86_64-musl-v0.5.0.tar.gz \
+    && mv polypolish polypolish_insert_filter.py /usr/local/bin
 
 # -----------------------------------------
 
