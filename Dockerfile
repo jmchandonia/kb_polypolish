@@ -9,7 +9,7 @@ MAINTAINER KBase Developer
 RUN echo "start building docker image"
 
 RUN apt-get update \
-    && apt-get -y --allow-unauthenticated install wget
+    && apt-get -y --allow-unauthenticated install wget bwa
 
 WORKDIR /kb/module
 
