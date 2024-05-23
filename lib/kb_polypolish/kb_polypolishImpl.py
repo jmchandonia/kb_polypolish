@@ -214,7 +214,7 @@ class kb_polypolish:
         # run it
         self.log(console, "command: "+cmd)
         cmdProcess = subprocess.Popen(cmd, stdout=subprocess.PIPE,
-                                          stderr=subprocess.STDOUT, shell=True)
+                                      stderr=subprocess.STDOUT, shell=True)
         for line in cmdProcess.stdout:
             self.log(console, line.decode("utf-8").rstrip())
             cmdProcess.wait()
