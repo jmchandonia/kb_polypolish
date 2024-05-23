@@ -31,7 +31,7 @@ class kb_polypolish:
     # state. A method could easily clobber the state set by another while
     # the latter method is running.
     ######################################### noqa
-    VERSION = "0.0.1"
+    VERSION = "1.0.0"
     GIT_URL = "git@github.com:jmchandonia/kb_polypolish.git"
     GIT_COMMIT_HASH = "ca97c144a7d300bab7a13bea5aa0d0e075a5a8fc"
 
@@ -104,8 +104,8 @@ class kb_polypolish:
         # return variables are: output
         #BEGIN run_kb_polypolish
         console = []
-        self.log(console, 'Running run_kb_polypolish with params:\n{}'.format(
-            json.dumps(params, indent=1)))
+        # self.log(console, 'Running run_kb_polypolish with params:\n{}'.format(
+        #     json.dumps(params, indent=1)))
         token = self.cfg['KB_AUTH_TOKEN']
 
         # param checks
@@ -175,7 +175,7 @@ class kb_polypolish:
         if sam2 is not None:
             filt1 = os.path.join(self.scratch, "filtered1_"+str(uuid.uuid4())+".sam")
             filt2 = os.path.join(self.scratch, "filtered2_"+str(uuid.uuid4())+".sam")
-            cmd = 'polypolish_insert_filter.py --in1 '+sam1+' --in2 '+sam2+' --out1 '+filt1+' --out2 '+filt2
+            cmd = 'polypolish filter --in1 '+sam1+' --in2 '+sam2+' --out1 '+filt1+' --out2 '+filt2
             self.log(console, "command: "+cmd)
             cmdProcess = subprocess.Popen(cmd, stdout=subprocess.PIPE,
                                           stderr=subprocess.STDOUT, shell=True)
@@ -186,7 +186,7 @@ class kb_polypolish:
                     raise ValueError('Error running '+cmd)
 
         # build command line
-        cmd = 'polypolish'
+        cmd = 'polypolish polish'
 
         if 'fraction_invalid' in params and params['fraction_invalid'] is not None:
             cmd += ' --fraction_invalid '+str(params['fraction_invalid'])
